@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+<div class="example-wrapper">
+    <table>
+    {% for developerTasks in developerTasks|default([]) %}
+        {% if  loop.index == 1 %}
+            <tr>
+                <th>Developers/Tasks</th>
+                {% for i in 1..developerTasks|length %}
+                    <th>{{ i }}</th>
+                {% endfor %}
+            </tr>
+        {% endif %}
+
+        <tr>
+            <td>{{ loop.index }}</td>
+            {% for developerTask in developerTasks %}
+                <th>{{ developerTask }}</th>
+            {% endfor %}
+        </tr>
+    {% else %}
+        No data found.
+        <ol>
+            <li>
+                Create datebase <br>
+                <b><code>php bin/console doctrine:database:create</code></b>
+            </li>
+            <li>
+                Load Fixtures <br>
+                <b><code>php bin/console doctrine:fixture:load OR php bin/console doctrine:fixture:load --append</code></b>
+            </li>
+            <li>
+                Run the command <br>
+                <b><code>php bin/console task:update</code></b>
+            </li>
+            <li>
+                Reload the page or click <a href="{{ path('home') }}">here</a></b>
+            </li>
+        </ol>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}

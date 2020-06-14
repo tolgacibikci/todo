@@ -1,4 +1,5 @@
-
+###> PhpStrom Files ###
+.idea/
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
